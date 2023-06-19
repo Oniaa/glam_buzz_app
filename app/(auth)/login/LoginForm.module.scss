@@ -1,0 +1,56 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 160px;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 96px;
+    font-size: 1.5rem;
+  }
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+
+  input {
+    width: 184px;
+    height: 32px;
+    border-radius: 8px;
+    text-align: center;
+  }
+}
+
+.button {
+  width: 152px;
+  height: 32px;
+  border-radius: 15px;
+}
+
+.orContainer {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+
+  .hr {
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid #000;
+    margin: 0 10px;
+  }
+
+  span {
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+  }
+}

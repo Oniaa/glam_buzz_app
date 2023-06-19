@@ -10,6 +10,8 @@
     "migrate": "dotenv -- ley --require tsm"
   },
   "dependencies": {
+    "@next/font": "^13.4.6",
+    "bcrypt": "^5.1.0",
     "dotenv-cli": "^7.2.1",
     "dotenv-safe": "^8.2.0",
     "ley": "^0.8.1",
@@ -18,10 +20,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.63.4",
+    "server-only": "^0.0.1",
     "sharp": "^0.32.1",
-    "tsm": "^2.3.0"
+    "tsm": "^2.3.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/dotenv-safe": "^8.1.2",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
