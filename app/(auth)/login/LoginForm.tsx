@@ -59,7 +59,7 @@ export default function LoginForm(props: Props) {
           onChange={(event) => setPassword(event.currentTarget.value)}
           placeholder="Enter Password"
           className={poppins.className}
-          style={{ marginBottom: '48px' }}
+          style={{ marginBottom: '40px' }}
         />
         <button
           className={`${poppins.className} ${style.button}`}

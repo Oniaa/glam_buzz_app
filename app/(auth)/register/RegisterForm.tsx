@@ -30,7 +30,6 @@ export default function RegisterForm() {
     // we may have in the future revalidatePath()
     router.refresh();
   }
-  }
 
   return (
     <main className={style.mainContainer}>
@@ -53,7 +52,7 @@ export default function RegisterForm() {
           onChange={(event) => setPassword(event.currentTarget.value)}
           placeholder="Enter Password"
           className={poppins.className}
-          style={{ marginBottom: '48px' }}
+          style={{ marginBottom: '40px' }}
         />
         <button
           className={`${poppins.className} ${style.button}`}
@@ -63,6 +62,14 @@ export default function RegisterForm() {
         </button>
         {error !== '' && <div>{error}</div>}
       </form>
+      <div className={style.orContainer} style={{ marginBottom: '32px' }}>
+        <hr className={style.hr} />
+        <span className={poppins.className}>OR</span>
+        <hr className={style.hr} />
+      </div>
+      <button className={`${poppins.className} ${style.button}`}>
+        Sign In
+      </button>
     </main>
   );
 }
