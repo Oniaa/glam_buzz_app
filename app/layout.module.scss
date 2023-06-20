@@ -1,0 +1,21 @@
+.navBar {
+  position: absolute;
+  width: 100%;
+  height: 65px;
+  left: 0px;
+  top: 779px;
+  display: flex;
+  padding: 0 40px 0 40px;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  a {
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+}

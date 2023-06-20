@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getUserByUsername } from '../../../database/users';
+import style from './page.module.scss';
 
 type Props = {
   params: { username: string };

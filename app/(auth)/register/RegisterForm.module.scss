@@ -27,6 +27,7 @@
     height: 32px;
     border-radius: 8px;
     text-align: center;
+    font-size: 1.125rem;
   }
 }
 
@@ -34,23 +35,5 @@
   width: 152px;
   height: 32px;
   border-radius: 15px;
-}
-
-.orContainer {
-  display: flex;
-  align-items: center;
-  margin: 32px 0;
-
-  .hr {
-    flex-grow: 1;
-    border: none;
-    border-top: 1px solid #000;
-    margin: 0 10px;
-  }
-
-  span {
-    font-weight: bold;
-    color: #000;
-    text-transform: uppercase;
-  }
+  font-size: 1.125rem;
 }

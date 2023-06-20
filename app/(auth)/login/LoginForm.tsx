@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { montserrat, poppins, quicksand } from '../../../util/fonts';
 import { getSafeReturnToPath } from '../../../util/validation';
 import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
+import { RegisterButton } from '../../RegisterButton';
 import style from './LoginForm.module.scss';
 
 type Props = { returnTo?: string | string[] };
@@ -63,7 +64,6 @@ export default function LoginForm(props: Props) {
         />
         <button
           className={`${poppins.className} ${style.button}`}
-          style={{ marginBottom: '32px' }}
           onClick={async () => await login()}
         >
           Sign in
@@ -75,9 +75,7 @@ export default function LoginForm(props: Props) {
         <span className={poppins.className}>OR</span>
         <hr className={style.hr} />
       </div>
-      <button className={`${poppins.className} ${style.button}`}>
-        Register
-      </button>
+      < RegisterButton />
     </main>
   );
 }
