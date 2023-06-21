@@ -9,7 +9,7 @@ export const products = [
       'Apply 2-3 drops of serum onto the skin and pat gently to help absorption.',
     tagId: 2,
     brandId: 1,
-    imagePath: 'public/images/productPics/Green-Tea-Calming-Serum.avif',
+    imagePath: '/images/productPics/Green-Tea-Calming-Serum.avif',
     price: 25,
   },
   {
@@ -22,8 +22,7 @@ export const products = [
       'At the last step of skin care routine, evenly spread a generous amount over areas vulnerable to sun exposure.',
     tagId: 2,
     brandId: 1,
-    imagePath:
-      'public/images/productPics/relief-sun-rice-probiotics-spf-50.avif',
+    imagePath: '/images/productPics/relief-sun-rice-probiotics-spf-50.avif',
     price: 28,
   },
   {
@@ -37,7 +36,7 @@ export const products = [
     tagId: 4,
     brandId: 2,
     imagePath:
-      'public/images/productPics/skin-long-wear-weightless-foundation-spf-15.avif',
+      '/images/productPics/skin-long-wear-weightless-foundation-spf-15.avif',
     price: 58,
   },
   {
@@ -50,7 +49,7 @@ export const products = [
       'Prime your face before applying the Bobbi Brown Skin Concealer Stick by using the Vitamin Enriched Face Base, and your eye area with the Vitamin Enriched Eye Base for best results. Afterwards, you can easily dab the Skin Concealer Stick onto uneven areas and discolorations using your fingertips, and lightly blend as needed.',
     tagId: 4,
     brandId: 2,
-    imagePath: 'public/images/productPics/skin-concealer-stick.avif',
+    imagePath: '/images/productPics/skin-concealer-stick.avif',
     price: 48,
   },
   {
@@ -63,7 +62,7 @@ export const products = [
       'Apply liberally to clean, towel-dried skin after showering, bathing or whenever skin needs a moisture boost. Pay particular attention to rough, dry areas such as elbows and knees. Not intended for face or neck.',
     tagId: 1,
     brandId: 3,
-    imagePath: 'public/images/productPics/deep-comfort-body-butter.avif',
+    imagePath: '/images/productPics/deep-comfort-body-butter.avif',
     price: 42,
   },
   {
@@ -75,7 +74,7 @@ export const products = [
     application: 'Apply to clean, dry skin.',
     tagId: 1,
     brandId: 3,
-    imagePath: 'public/images/productPics/antiperspirant-roll-on.avif',
+    imagePath: '/images/productPics/antiperspirant-roll-on.avif',
     price: 24,
   },
   {
@@ -88,8 +87,7 @@ export const products = [
       'After cleansing and toning, apply a small amount on your entire face. Gently pat using fingertips to aid absorption, and then go forth with your moisturizer.',
     tagId: 2,
     brandId: 4,
-    imagePath:
-      'public/images/productPics/advanced-snail-96-mucin-power-essence.avif',
+    imagePath: '/images/productPics/advanced-snail-96-mucin-power-essence.avif',
     price: 31,
   },
   {
@@ -102,8 +100,7 @@ export const products = [
       'Gently apply a proper amount of the cream on face, avoiding the eye and mouth area, after cleansing and toning. Tap the area where the cream was applied gently in order for it to be absorbed along the skin texture. ',
     tagId: 2,
     brandId: 4,
-    imagePath:
-      'public/images/productPics/advanced-snail-92-all-in-one-cream.avif',
+    imagePath: '/images/productPics/advanced-snail-92-all-in-one-cream.avif',
     price: 34,
   },
 ];
