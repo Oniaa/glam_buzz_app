@@ -18,7 +18,7 @@ export default async function ProfileUsernamePage({ params }: Props) {
   return (
     <main className={style.mainContainer}>
       <Image
-        src={`/images/${user.username}.jpg`}
+        src={`/images/profilePics/${user.username}.avif`}
         width={150}
         height={150}
         alt="Profile Picture"

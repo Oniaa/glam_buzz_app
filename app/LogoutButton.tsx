@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { TbLogout } from 'react-icons/tb';
 import { logout } from './(auth)/logout/actions';
 import style from './LogoutButton.module.scss';
 
@@ -15,7 +16,7 @@ export function LogoutButton() {
           router.refresh();
         }}
       >
-        logout
+        <TbLogout size="1.65rem" />
       </button>
     </form>
   );

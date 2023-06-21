@@ -44,7 +44,12 @@ export default async function RootLayout({ children }: Props) {
           <div>
             {user ? (
               <>
-                <div>{user.username}</div>
+                <Link
+                  className={poppins.className}
+                  href={`/profile/${user.username}`}
+                >
+                  {user.username}
+                </Link>
                 <LogoutButton />
               </>
             ) : (
