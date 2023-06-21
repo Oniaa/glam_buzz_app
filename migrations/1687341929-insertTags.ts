@@ -5,9 +5,9 @@ export async function up(sql: Sql) {
   for (const tag of tags) {
     await sql`
     INSERT INTO tags
-      (name)
+      (tag_name)
     VALUES
-      (${tag.name})
+      (${tag.tagName})
   `;
   }
 }

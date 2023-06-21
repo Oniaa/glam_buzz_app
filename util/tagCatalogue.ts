@@ -1,6 +1,6 @@
 export const tags = [
-  { id: 1, name: 'Body' },
-  { id: 2, name: 'Face' },
-  { id: 3, name: 'Hair' },
-  { id: 4, name: 'Make up' },
+  { id: 1, tagName: 'Body' },
+  { id: 2, tagName: 'Face' },
+  { id: 3, tagName: 'Hair' },
+  { id: 4, tagName: 'Make up' },
 ];

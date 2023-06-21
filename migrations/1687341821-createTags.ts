@@ -4,7 +4,7 @@ export async function up(sql: Sql) {
   await sql`
     CREATE TABLE tags (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      name varchar(80) NOT NULL
+      tag_name varchar(80) NOT NULL
     )
   `;
 }

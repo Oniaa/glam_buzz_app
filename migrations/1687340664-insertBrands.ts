@@ -5,9 +5,9 @@ export async function up(sql: Sql) {
   for (const brand of brands) {
     await sql`
     INSERT INTO brands
-      (name)
+      (brand_name)
     VALUES
-      (${brand.name})
+      (${brand.brandName})
   `;
   }
 }
