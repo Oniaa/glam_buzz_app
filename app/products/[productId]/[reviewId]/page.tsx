@@ -1,8 +1,10 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { getProductWithBrandNameById } from '../../../database/products';
-import { quicksand } from '../../../util/fonts';
+import { notFound, redirect } from 'next/navigation';
+import { getProductWithBrandNameById } from '../../../../database/products';
+import { getValidSessionByToken } from '../../../../database/sessions';
+import { quicksand } from '../../../../util/fonts';
 
 // import ReviewButton from './ReviewButton';
 
@@ -17,7 +19,7 @@ type Props = {
   params: { productId: string };
 };
 
-export default async function ProductPage(props: Props) {
+export default async function ReviewPage(props: Props) {
   const product = await getProductWithBrandNameById(
     Number(props.params.productId),
   );
@@ -25,6 +27,16 @@ export default async function ProductPage(props: Props) {
   if (!product) {
     notFound();
   }
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the sessionToken has a valid session
+
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
+
+  // 3. Either redirect or render the login form
+  if (!session) redirect(`/login?returnTo=/products/${product.id}/reviews`);
 
   return (
     <main>
@@ -42,21 +54,9 @@ export default async function ProductPage(props: Props) {
       {product.price}
       <br />
       <span>RATING</span>
-      <br />
-
-      <br />
-      <button>Wish List</button>
-      <Link href={`/products/${product.id}/reviews`}>
-        <span>Write a review</span>
-      </Link>
-
-      <br />
-      <br />
-      <div>
-        {product.description}
-        <br />
-        {product.application}
-      </div>
+      <span>Write Comment</span>
+      <button>Upload Picture</button>
+      <button>Submit</button>
     </main>
   );
 }
