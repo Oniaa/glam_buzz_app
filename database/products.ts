@@ -45,6 +45,30 @@ export const getProductById = cache(async (id: number) => {
   return product;
 });
 
+export const getProductWithBrandNameById = cache(async (productId: number) => {
+  const [product] = await sql<ProductBrand[]>`
+    SELECT
+      products.id,
+      products.name,
+      products.type,
+      products.description,
+      products.application,
+      products.tag_id,
+      products.brand_id,
+      products.image_path,
+      products.price,
+      brands.brand_name
+    FROM
+      products
+    INNER JOIN
+      brands ON brands.id = products.brand_id
+    WHERE
+      products.id = ${productId}
+  `;
+
+  return product;
+});
+
 export const getProductsWithBrandNames = cache(async () => {
   const productsWithBrandNames = await sql<ProductBrand[]>`
     SELECT

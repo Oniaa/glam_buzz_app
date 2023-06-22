@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProductsWithBrandNames } from '../../database/products';
+import { poppins, quicksand } from '../../util/fonts';
 // import { getBrandByProductId } from '../../database/brands';
 // import { getProducts } from '../../database/products';
 import style from './page.module.scss';
@@ -22,12 +23,22 @@ export default async function ProductsPage(props: Props) {
   console.log(products);
 
   return (
-    <main>
-      <h1>Discover</h1>
+    <main className={style.mainContainer}>
+      <h1 className={quicksand.className}>Discover</h1>
+      <div className={`${quicksand.className} ${style.searchBar}`}>Search</div>
+      <div className={style.tagContainer}>
+        <span className={`${poppins.className} ${style.tag}`}>Face</span>
+        <span className={`${poppins.className} ${style.tag}`}>Body</span>
+        <span className={`${poppins.className} ${style.tag3}`}>Make up</span>
+        <span className={`${poppins.className} ${style.tag}`}>Hair</span>
+      </div>
       <div>
         {products.map((product) => {
           return (
-            <div key={`product-div-${product.id}`}>
+            <div
+              className={style.productContainer}
+              key={`product-div-${product.id}`}
+            >
               <Image
                 src={product.imagePath}
                 alt="Beauty Product"
@@ -35,11 +46,13 @@ export default async function ProductsPage(props: Props) {
                 height={100}
               />
               <div>
-                <h3>{product.brandName}</h3>
-                <h2>{product.name}</h2>
-                <h4>{product.type}</h4>
+                <Link href={`/products/${product.id}`}>
+                  <h3 className={quicksand.className}>{product.brandName}</h3>
+                  <h2 className={quicksand.className}>{product.name}</h2>
+                  <h4 className={quicksand.className}>{product.type}</h4>
+                </Link>
               </div>
-              <span>{product.price}</span>
+              <span className={quicksand.className}>{product.price} €</span>
             </div>
           );
         })}
