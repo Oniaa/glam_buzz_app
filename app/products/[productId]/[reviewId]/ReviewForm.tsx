@@ -1,12 +1,14 @@
 'use client';
 // import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { quicksand, raleway } from '../../../../util/fonts';
 /* import {
   getProductWithBrandNameById,
   Product,
 } from '../../../../database/products';
 import { Review } from '../../../../database/review'; */
 import { ReviewResponseBodyPost } from '../../../api/reviews/route';
+import style from './ReviewForm.module.scss';
 
 type Props = {
   userId: number | undefined;
@@ -38,19 +40,27 @@ export default function ReviewForm({ userId, productId }: Props) {
   }
   console.log(userId, productId, commentInput);
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
+    <form
+      className={style.formContainer}
+      onSubmit={(event) => event.preventDefault()}
+    >
       <label>
-        Comment
         <textarea
+          className={raleway.className}
+          placeholder="Write Review"
           value={commentInput}
           onChange={(event) => setCommentInput(event.currentTarget.value)}
         />
       </label>
-
-      <br />
-      <button>Upload Picture</button>
-      <br />
-      <button onClick={async () => await createReview()}>Submit</button>
+      <button className={`${raleway.className} ${style.button}`}>
+        Upload Picture
+      </button>
+      <button
+        className={`${raleway.className} ${style.button}`}
+        onClick={async () => await createReview()}
+      >
+        Submit
+      </button>
       {error !== '' && <div>{error}</div>}
     </form>
   );
