@@ -48,6 +48,8 @@ export default function ReviewForm({ userId, productId }: Props) {
       </label>
 
       <br />
+      <button>Upload Picture</button>
+      <br />
       <button onClick={async () => await createReview()}>Submit</button>
       {error !== '' && <div>{error}</div>}
     </form>

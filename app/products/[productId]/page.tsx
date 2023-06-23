@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProductWithBrandNameById } from '../../../database/products';
-import { quicksand } from '../../../util/fonts';
+import { poppins, quicksand, raleway } from '../../../util/fonts';
 import style from './page.module.scss';
 
 export const metadata = {
@@ -26,8 +26,8 @@ export default async function ProductPage(props: Props) {
   }
 
   return (
-    <main>
-      <div>
+    <main className={style.mainContainer}>
+      <div className={style.productTitle}>
         <h3 className={quicksand.className}>{product.brandName}</h3>
         <h2 className={quicksand.className}>{product.name}</h2>
         <h4 className={quicksand.className}>{product.type}</h4>
@@ -35,27 +35,37 @@ export default async function ProductPage(props: Props) {
       <Image
         src={product.imagePath}
         alt="Beauty Product"
-        width={100}
-        height={100}
+        width={300}
+        height={300}
       />
-      {product.price}
-      <br />
-      <span>RATING</span>
-      <br />
 
-      <br />
-      <button>Wish List</button>
-      <br />
-      <Link href={`/products/${product.id}/reviews`}>
-        <span>Write a review</span>
+      <div className={style.ratingAndPrice}>
+        <span>RATING STARS</span>
+        <span className={`${quicksand.className} ${style.price}`}>
+          {product.price}€
+        </span>
+      </div>
+
+      <Link
+        className={`${poppins.className} ${style.reviewBnt}`}
+        href={`/products/${product.id}/reviews`}
+      >
+        <span>Review</span>
       </Link>
+      <button className={`${poppins.className} ${style.wishListBtn}`}>
+        Wish List
+      </button>
 
-      <br />
-      <br />
-      <div>
-        {product.description}
+      <div className={style.productText}>
+        <span className={quicksand.className}>Product Details</span>
         <br />
-        {product.application}
+        <p className={raleway.className}>{product.description}</p>
+        <br />
+        <span className={quicksand.className}>Application</span>
+        <br />
+        <p className={raleway.className}>{product.application}</p>
+        <br />
+        <span className={quicksand.className}>Community Reviews</span>
       </div>
     </main>
   );

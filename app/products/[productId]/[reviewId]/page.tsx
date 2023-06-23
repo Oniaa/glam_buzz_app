@@ -67,9 +67,6 @@ export default async function ReviewPage(props: Props) {
       <span>Write Comment</span>
       <ReviewForm userId={user?.id} productId={product.id} />
       <br />
-      <button>Upload Picture</button>
-      <br />
-      <button>Submit</button>
     </main>
   );
 }
