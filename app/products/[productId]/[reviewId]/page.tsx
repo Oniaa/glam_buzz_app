@@ -7,9 +7,8 @@ import { getReviews } from '../../../../database/review';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import { getUserBySessionToken } from '../../../../database/users';
 import { quicksand } from '../../../../util/fonts';
+import style from './page.module.scss';
 import ReviewForm from './ReviewForm';
-
-// import ReviewButton from './ReviewButton';
 
 export const metadata = {
   title: 'Single Product Page',
@@ -48,23 +47,28 @@ export default async function ReviewPage(props: Props) {
   const reviews = await getReviews();
 
   return (
-    <main>
-      <div>
-        <h3 className={quicksand.className}>{product.brandName}</h3>
-        <h2 className={quicksand.className}>{product.name}</h2>
-        <h4 className={quicksand.className}>{product.type}</h4>
+    <main className={style.mainContainer}>
+      <h1 className={quicksand.className}>Review Product</h1>
+      <section className={style.sectionContainer}>
+        <Image
+          src={product.imagePath}
+          alt="Beauty Product"
+          width={100}
+          height={100}
+        />
+        <div className={style.productTitle}>
+          <h3 className={quicksand.className}>{product.brandName}</h3>
+          <h2 className={quicksand.className}>{product.name}</h2>
+          <h4 className={quicksand.className}>
+            {product.type}
+            <span>{product.price}€</span>
+          </h4>
+        </div>
+      </section>
+      <div className={style.rating}>
+        <span className={quicksand.className}>Rate this product</span>
+        <span>RATING STARS</span>
       </div>
-      <Image
-        src={product.imagePath}
-        alt="Beauty Product"
-        width={100}
-        height={100}
-      />
-      {product.price}
-      <br />
-      <span>RATING</span>
-      <br />
-      <span>Write Comment</span>
       <ReviewForm userId={user?.id} productId={product.id} />
       <br />
     </main>
