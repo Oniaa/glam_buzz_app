@@ -52,11 +52,13 @@ export default async function ProductsPage(props: Props) {
                   <h2 className={quicksand.className}>{product.name}</h2>
                   <h4 className={quicksand.className}>{product.type}</h4>
                 </Link>
-                <span>Rating Stars</span>
+                <div className={style.ratingAndPrice}>
+                  <span>Rating Stars</span>
+                  <span className={`${quicksand.className} ${style.price}`}>
+                    {product.price}€
+                  </span>
+                </div>
               </div>
-              <span className={`${quicksand.className} ${style.price}`}>
-                {product.price}€
-              </span>
             </div>
           );
         })}

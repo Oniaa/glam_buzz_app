@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProductWithBrandNameById } from '../../../database/products';
 import { quicksand } from '../../../util/fonts';
-
-// import ReviewButton from './ReviewButton';
+import style from './page.module.scss';
 
 export const metadata = {
   title: 'Single Product Page',
