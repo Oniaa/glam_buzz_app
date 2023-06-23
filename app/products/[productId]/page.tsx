@@ -46,6 +46,7 @@ export default async function ProductPage(props: Props) {
 
       <br />
       <button>Wish List</button>
+      <br />
       <Link href={`/products/${product.id}/reviews`}>
         <span>Write a review</span>
       </Link>

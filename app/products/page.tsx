@@ -32,7 +32,7 @@ export default async function ProductsPage(props: Props) {
         <span className={`${poppins.className} ${style.tag3}`}>Make up</span>
         <span className={`${poppins.className} ${style.tag}`}>Hair</span>
       </div>
-      <div>
+      <section>
         {products.map((product) => {
           return (
             <div
@@ -40,23 +40,27 @@ export default async function ProductsPage(props: Props) {
               key={`product-div-${product.id}`}
             >
               <Image
+                className={style.imageContainer}
                 src={product.imagePath}
                 alt="Beauty Product"
                 width={100}
                 height={100}
               />
-              <div>
+              <div className={style.textContainer}>
                 <Link href={`/products/${product.id}`}>
                   <h3 className={quicksand.className}>{product.brandName}</h3>
                   <h2 className={quicksand.className}>{product.name}</h2>
                   <h4 className={quicksand.className}>{product.type}</h4>
                 </Link>
+                <span>Rating Stars</span>
               </div>
-              <span className={quicksand.className}>{product.price} €</span>
+              <span className={`${quicksand.className} ${style.price}`}>
+                {product.price}€
+              </span>
             </div>
           );
         })}
-      </div>
+      </section>
     </main>
   );
 }

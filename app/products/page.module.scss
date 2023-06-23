@@ -1,6 +1,7 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
+  margin-bottom: 72px;
 
   h1 {
     margin-top: 96px;
@@ -51,4 +52,28 @@
 .productContainer {
   display: flex;
   margin-top: 40px;
+
+  .imageContainer {
+    flex-shrink: 0;
+  }
+
+  .textContainer {
+    flex-grow: 1;
+
+    h3 {
+      font-size: 0.875rem;
+    }
+    h2 {
+      font-size: 1.125rem;
+    }
+    h4 {
+      font-size: 1rem;
+    }
+  }
+
+  .price {
+    margin-left: auto;
+    align-self: flex-end;
+    font-size: 1.125rem;
+  }
 }
