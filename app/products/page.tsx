@@ -47,7 +47,7 @@ export default async function ProductsPage(props: Props) {
                 height={100}
               />
               <div className={style.textContainer}>
-                <Link href={`/products/${product.id}`}>
+                <Link href={`/products/${product.id}` as any}>
                   <h3 className={quicksand.className}>{product.brandName}</h3>
                   <h2 className={quicksand.className}>{product.name}</h2>
                   <h4 className={quicksand.className}>{product.type}</h4>
