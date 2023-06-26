@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProductsWithBrandNames } from '../../database/products';
+import { getReviews } from '../../database/reviews';
 import { poppins, quicksand } from '../../util/fonts';
+import StarRating from '../RatingStars';
 // import { getBrandByProductId } from '../../database/brands';
 // import { getProducts } from '../../database/products';
 import style from './page.module.scss';
@@ -12,15 +14,14 @@ export const metadata = {
 };
 
 export const dynamic = 'force-dynamic';
-type Props = {
-  params: { productId: string };
-};
 
-export default async function ProductsPage(props: Props) {
+export default async function ProductsPage() {
   // const products = await getProducts();
   // const brand = await getBrandByProductId();
   const products = await getProductsWithBrandNames();
-  console.log(products);
+  // console.log(products);
+  const reviews = await getReviews();
+  console.log('reviews', reviews);
 
   return (
     <main className={style.mainContainer}>
@@ -34,6 +35,14 @@ export default async function ProductsPage(props: Props) {
       </div>
       <section>
         {products.map((product) => {
+          const productReview = reviews.filter(
+            (review) => review.productId === product.id,
+          );
+
+          const ratings = productReview.map((review) => review.rating);
+          console.log('ratings', ratings);
+          const sum = ratings.reduce((total, rating) => total + rating, 0);
+          const averageRating = sum / ratings.length;
           return (
             <div
               className={style.productContainer}
@@ -53,7 +62,7 @@ export default async function ProductsPage(props: Props) {
                   <h4 className={quicksand.className}>{product.type}</h4>
                 </Link>
                 <div className={style.ratingAndPrice}>
-                  <span>Rating Stars</span>
+                  <StarRating rating={averageRating} />
                   <span className={`${quicksand.className} ${style.price}`}>
                     {product.price}€
                   </span>

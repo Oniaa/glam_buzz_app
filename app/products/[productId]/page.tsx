@@ -35,12 +35,11 @@ export default async function ProductPage(props: Props) {
   const allreviews = await getReviewsByProductId(
     Number(props.params.productId),
   );
-  console.log('all reviews', allreviews);
+
   const ratings = allreviews.map((review) => review.rating);
-  console.log('ratings', ratings);
+
   const sum = ratings.reduce((total, rating) => total + rating, 0);
   const averageRating = sum / ratings.length;
-  console.log('average rating', averageRating);
 
   return (
     <main className={style.mainContainer}>

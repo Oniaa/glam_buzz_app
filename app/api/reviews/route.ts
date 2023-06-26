@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Review, submitReview } from '../../../database/review';
+import { ReviewSubmit, submitReview } from '../../../database/reviews';
 
 type Error = {
   error: string;
@@ -8,7 +8,7 @@ type Error = {
 
 export type ReviewResponseBodyPost =
   | {
-      review: Review;
+      review: ReviewSubmit;
     }
   | Error;
 

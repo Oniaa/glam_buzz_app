@@ -1,6 +1,22 @@
 import { cache } from 'react';
 import { sql } from './connect';
 
+export type ReviewSubmit = {
+  id: number;
+  userId: number;
+  comment: string;
+  productId: number;
+  rating: number | null;
+};
+
+export type ReviewRating = {
+  id: number;
+  userId: number;
+  comment: string;
+  productId: number;
+  rating: number;
+};
+
 export type ReviewUser = {
   id: number;
   userId: number;
@@ -10,16 +26,51 @@ export type ReviewUser = {
   username: string;
 };
 
-export type Review = {
-  id: number;
-  userId: number;
-  comment: string;
-  productId: number;
-  rating: number;
-};
+export const getReviews = cache(async () => {
+  const reviews = await sql<ReviewRating[]>`
+    SELECT * FROM reviews
+ `;
+  return reviews;
+});
+
+export const getReviewById = cache(async (id: number) => {
+  const [review] = await sql<ReviewSubmit[]>`
+    SELECT
+      *
+    FROM
+      reviews
+    WHERE
+      id = ${id}
+  `;
+  return review;
+});
+
+export const submitReview = cache(
+  async (
+    userId: number,
+    comment: string,
+    productId: number,
+    rating?: number,
+  ) => {
+    const [review] = await sql<ReviewSubmit[]>`
+    INSERT INTO reviews
+      (user_id, comment, product_id, rating )
+    VALUES
+      (${userId}, ${comment}, ${productId}, ${rating || null})
+    RETURNING
+    id,
+    user_id,
+    comment,
+    product_id,
+    rating
+ `;
+
+    return review;
+  },
+);
 
 export const getReviewsByProductId = cache(async (productId: number) => {
-  const reviewsByProductId = await sql<Review[]>`
+  const reviewsByProductId = await sql<ReviewRating[]>`
     SELECT
       reviews.id,
       user_id,
