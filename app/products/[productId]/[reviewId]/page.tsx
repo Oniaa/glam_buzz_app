@@ -1,9 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { getProductWithBrandNameById } from '../../../../database/products';
-import { getReviews } from '../../../../database/review';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import { getUserBySessionToken } from '../../../../database/users';
 import { quicksand } from '../../../../util/fonts';
@@ -43,8 +41,6 @@ export default async function ReviewPage(props: Props) {
 
   // 3. Either redirect or render the login form
   if (!session) redirect(`/login?returnTo=/products/${product.id}/reviews`);
-
-  const reviews = await getReviews();
 
   return (
     <main className={style.mainContainer}>

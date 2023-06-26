@@ -1,12 +1,7 @@
 'use client';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { quicksand, raleway } from '../../../../util/fonts';
-/* import {
-  getProductWithBrandNameById,
-  Product,
-} from '../../../../database/products';
-import { Review } from '../../../../database/review'; */
+import { poppins, quicksand, raleway } from '../../../../util/fonts';
 import { ReviewResponseBodyPost } from '../../../api/reviews/route';
 import style from './ReviewForm.module.scss';
 
@@ -17,9 +12,9 @@ type Props = {
 
 export default function ReviewForm({ userId, productId }: Props) {
   const [commentInput, setCommentInput] = useState('');
-  const [ratingInput, setRatingInput] = useState('');
+  const [ratingInput, setRatingInput] = useState(0);
   const [error, setError] = useState('');
-  // const router = useRouter();
+  const router = useRouter();
 
   async function createReview() {
     const response = await fetch('/api/reviews', {
@@ -28,6 +23,7 @@ export default function ReviewForm({ userId, productId }: Props) {
         comment: commentInput,
         userId,
         productId,
+        rating: ratingInput,
       }),
     });
 
@@ -38,12 +34,46 @@ export default function ReviewForm({ userId, productId }: Props) {
       return;
     }
   }
-  console.log(userId, productId, commentInput);
+
+  const handleRating = (selectedRating: number) => {
+    setRatingInput(selectedRating);
+  };
+  const handleRatingKeyDown = (
+    event: React.KeyboardEvent<HTMLSpanElement>,
+    newRating: number,
+  ) => {
+    if (event.key === 'Enter') {
+      setRatingInput(newRating);
+    }
+  };
+  async function handleReviewSubmit() {
+    await createReview();
+    router.push(`/products/${productId}` as any);
+  }
+
+  console.log('review + rating', userId, productId, commentInput, ratingInput);
   return (
     <form
       className={style.formContainer}
       onSubmit={(event) => event.preventDefault()}
     >
+      <div>
+        <span className={quicksand.className}>Rate this product:</span>
+        <div>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <span
+              key={`rating-${value}`}
+              onClick={() => handleRating(value)}
+              onKeyDown={(event) => handleRatingKeyDown(event, value)}
+              role="button"
+              style={{ cursor: 'pointer' }}
+              tabIndex={0}
+            >
+              {value <= ratingInput ? '★' : '☆'}
+            </span>
+          ))}
+        </div>
+      </div>
       <label>
         <textarea
           className={raleway.className}
@@ -52,12 +82,12 @@ export default function ReviewForm({ userId, productId }: Props) {
           onChange={(event) => setCommentInput(event.currentTarget.value)}
         />
       </label>
-      <button className={`${raleway.className} ${style.button}`}>
+      <button className={`${poppins.className} ${style.button}`}>
         Upload Picture
       </button>
       <button
-        className={`${raleway.className} ${style.button}`}
-        onClick={async () => await createReview()}
+        className={`${poppins.className} ${style.button}`}
+        onClick={handleReviewSubmit}
       >
         Submit
       </button>
