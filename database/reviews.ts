@@ -26,6 +26,18 @@ export type ReviewUser = {
   username: string;
 };
 
+export type ReviewByUser = {
+  name: string;
+  type: string;
+  price: number;
+  imagePath: string;
+  brandName: string;
+  id: number;
+  comment: string;
+  rating: number;
+  username: string;
+};
+
 export const getReviews = cache(async () => {
   const reviews = await sql<ReviewRating[]>`
     SELECT * FROM reviews
@@ -104,6 +116,33 @@ export const getReviewsWithUsername = cache(async (productId: number) => {
       products ON products.id = reviews.product_id
     WHERE
     products.id = ${productId}
+  `;
+
+  return reviewsWithUsername;
+});
+
+export const getReviewsByUser = cache(async (username: string) => {
+  const reviewsWithUsername = await sql<ReviewByUser[]>`
+    SELECT
+      products.name,
+      products.type,
+      products.price,
+      products.image_path,
+      brands.brand_name,
+      reviews.id,
+      comment,
+      rating,
+      users.username
+    FROM
+      reviews
+    INNER JOIN
+      products ON products.id = reviews.product_id
+    INNER JOIN
+      brands ON brands.id = products.brand_id
+    INNER JOIN
+      users ON users.id = reviews.user_id
+   WHERE
+      users.username = ${username.toLowerCase()}
   `;
 
   return reviewsWithUsername;

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getUserByUsername } from '../../../database/users';
 import { poppins, quicksand } from '../../../util/fonts';
@@ -34,7 +35,9 @@ export default async function ProfileUsernamePage({ params }: Props) {
         </button>
       </div>
       <div className={style.divContainer}>
-        <span className={poppins.className}>Reviewed Products</span>
+        <Link href={`/profile/${user.username}/reviewed` as any}>
+          <span className={poppins.className}>Reviewed Products</span>
+        </Link>
       </div>
       <div className={style.divContainer}>
         <span className={poppins.className}>Wish List</span>
