@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import { getUserBySessionToken } from '../../../../database/users';
 import { quicksand } from '../../../../util/fonts';
+import EditProfileForm from './EditProfileForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +32,7 @@ export default async function EditProfilePage({ params }: Props) {
   return (
     <main>
       <h1 className={quicksand.className}>Edit Profile</h1>
+      <EditProfileForm />
     </main>
   );
 }
