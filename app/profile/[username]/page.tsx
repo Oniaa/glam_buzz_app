@@ -27,9 +27,12 @@ export default async function ProfileUsernamePage({ params }: Props) {
       <h1 className={quicksand.className}> {user.username}</h1>
       <p className={quicksand.className}>Bio:</p>
       <div className={style.buttonContainer}>
-        <button className={`${poppins.className} ${style.button}`}>
+        <Link
+          href={`/profile/${user.username}/edit-profile` as any}
+          className={`${poppins.className} ${style.button}`}
+        >
           Edit Profile
-        </button>
+        </Link>
         <button className={`${poppins.className} ${style.button}`}>
           Share Profile
         </button>

@@ -32,6 +32,7 @@ export type ReviewByUser = {
   price: number;
   imagePath: string;
   brandName: string;
+  productId: number;
   id: number;
   comment: string;
   rating: number;
@@ -129,6 +130,7 @@ export const getReviewsByUser = cache(async (username: string) => {
       products.price,
       products.image_path,
       brands.brand_name,
+      product_id,
       reviews.id,
       comment,
       rating,

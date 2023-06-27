@@ -43,6 +43,7 @@ export default async function ProductsPage() {
           console.log('ratings', ratings);
           const sum = ratings.reduce((total, rating) => total + rating, 0);
           const averageRating = sum / ratings.length;
+          console.log('average rating', averageRating);
           return (
             <div
               className={style.productContainer}
