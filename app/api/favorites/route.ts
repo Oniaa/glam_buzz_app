@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Favorite, pushToFavorite } from '../../../database/favorites';
+import {
+  Favorite,
+  findFavorite,
+  getFavorites,
+  pushToFavorite,
+} from '../../../database/favorites';
 
 type Error = {
   error: string;
@@ -9,6 +14,12 @@ type Error = {
 export type FavoriteResponseBodyPost =
   | {
       favorite: Favorite;
+    }
+  | Error;
+
+export type FavoriteResponseBodyGet =
+  | {
+      favorites: Favorite[];
     }
   | Error;
 
@@ -38,6 +49,21 @@ export async function POST(
       { status: 400 },
     );
   }
+
+  const existingFavorite = await findFavorite(
+    result.data.userId,
+    result.data.productId,
+  );
+
+  if (existingFavorite) {
+    return NextResponse.json(
+      {
+        error: 'Product already exists in the wishlist',
+      },
+      { status: 400 },
+    );
+  }
+
   // query the database to get all the animals
   const favorite = await pushToFavorite(
     result.data.userId,
@@ -57,5 +83,14 @@ export async function POST(
 
   return NextResponse.json({
     favorite: favorite,
+  });
+}
+
+export async function GET(): Promise<NextResponse<FavoriteResponseBodyGet>> {
+  // query the database to get the favorites
+  const favorites = await getFavorites();
+
+  return NextResponse.json({
+    favorites: favorites,
   });
 }

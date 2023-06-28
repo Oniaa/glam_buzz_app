@@ -23,3 +23,19 @@ export const pushToFavorite = cache(
     return favorite;
   },
 );
+
+export const findFavorite = async (userId: number, productId: number) => {
+  const [favorite] = await sql<Favorite[]>`
+    SELECT * FROM favorites
+    WHERE user_id = ${userId} AND product_id = ${productId}
+  `;
+
+  return favorite;
+};
+
+export const getFavorites = cache(async () => {
+  const favorites = await sql<Favorite[]>`
+    SELECT * FROM favorites
+ `;
+  return favorites;
+});

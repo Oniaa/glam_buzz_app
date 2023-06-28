@@ -13,7 +13,7 @@ export default function WishListButton({ userId, productId }: Props) {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  async function createFavorite() {
+  async function pushToFavorite() {
     const response = await fetch('/api/favorites', {
       method: 'POST',
       body: JSON.stringify({
@@ -32,7 +32,7 @@ export default function WishListButton({ userId, productId }: Props) {
   }
 
   async function handleSubmit() {
-    await createFavorite();
+    await pushToFavorite();
   }
 
   return (
