@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -6,9 +7,11 @@ import {
   getReviewsByProductId,
   getReviewsWithUsername,
 } from '../../../database/reviews';
+import { getUserBySessionToken } from '../../../database/users';
 import { poppins, quicksand, raleway } from '../../../util/fonts';
 import StarRating from '../../RatingStars';
 import style from './page.module.scss';
+import WishListButton from './WishListButton';
 
 export const metadata = {
   title: 'Single Product Page',
@@ -41,6 +44,14 @@ export default async function ProductPage(props: Props) {
   const sum = ratings.reduce((total, rating) => total + rating, 0);
   const averageRating = sum / ratings.length;
 
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the sessionToken has a valid session
+  const user =
+    sessionTokenCookie &&
+    (await getUserBySessionToken(sessionTokenCookie.value));
+  console.log('user', user);
+
   return (
     <main className={style.mainContainer}>
       <div className={style.productTitle}>
@@ -69,9 +80,8 @@ export default async function ProductPage(props: Props) {
       >
         <span>Review</span>
       </Link>
-      <button className={`${poppins.className} ${style.wishListBtn}`}>
-        Wish List
-      </button>
+
+      <WishListButton userId={user?.id} productId={product.id} />
 
       <section className={style.productText}>
         <span className={quicksand.className}>Product Details</span>
