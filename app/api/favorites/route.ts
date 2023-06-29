@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import {
+  deleteFavoriteById,
   Favorite,
+  FavoriteDelete,
   findFavorite,
   getFavorites,
   pushToFavorite,
@@ -19,7 +21,13 @@ export type FavoriteResponseBodyPost =
 
 export type FavoriteResponseBodyGet =
   | {
-      favorites: Favorite[];
+      favorite: Favorite[];
+    }
+  | Error;
+
+export type FavoriteResponseBodyDelete =
+  | {
+      favorite: Favorite;
     }
   | Error;
 
@@ -27,6 +35,10 @@ const favoriteSchema = z.object({
   userId: z.number(),
   productId: z.number(),
 });
+
+/* const deleteSchema = z.object({
+  favoriteId: z.number(),
+}); */
 
 export async function POST(
   request: NextRequest,
@@ -54,6 +66,8 @@ export async function POST(
     result.data.userId,
     result.data.productId,
   );
+
+  console.log('existing', existingFavorite);
 
   if (existingFavorite) {
     return NextResponse.json(
@@ -91,6 +105,42 @@ export async function GET(): Promise<NextResponse<FavoriteResponseBodyGet>> {
   const favorites = await getFavorites();
 
   return NextResponse.json({
-    favorites: favorites,
+    favorite: favorites,
+  });
+}
+
+export async function DELETE(
+  request: NextRequest,
+): Promise<NextResponse<FavoriteResponseBodyDelete>> {
+  const url = new URL(request.url);
+  // console.log('hello url', url);
+
+  const favoriteId = url.searchParams.get('favoriteId');
+  console.log('favoriteId:', favoriteId);
+
+  if (!favoriteId) {
+    return NextResponse.json(
+      {
+        error: 'Favorite id is not valid',
+      },
+      { status: 400 },
+    );
+  }
+
+  const deleteFavorite = await deleteFavoriteById(Number(favoriteId));
+  // query the database to get all the animals
+  console.log('delete favorite', deleteFavorite);
+
+  if (!deleteFavorite) {
+    return NextResponse.json(
+      {
+        error: 'Favorite Not Found',
+      },
+      { status: 404 },
+    );
+  }
+
+  return NextResponse.json({
+    favorite: deleteFavorite,
   });
 }

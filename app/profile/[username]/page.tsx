@@ -43,7 +43,9 @@ export default async function ProfileUsernamePage({ params }: Props) {
         </Link>
       </div>
       <div className={style.divContainer}>
-        <span className={poppins.className}>Wish List</span>
+        <Link href={`/profile/${user.username}/wish-list` as any}>
+          <span className={poppins.className}>Wish List</span>
+        </Link>
       </div>
     </main>
   );
