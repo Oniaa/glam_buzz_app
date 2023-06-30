@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { poppins } from '../../../util/fonts';
 import { FavoriteResponseBodyPost } from '../../api/favorites/route';
@@ -12,6 +13,7 @@ type Props = {
 export default function WishListButton({ userId, productId }: Props) {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const router = useRouter();
 
   async function pushToFavorite() {
     const response = await fetch('/api/favorites', {
@@ -29,6 +31,8 @@ export default function WishListButton({ userId, productId }: Props) {
     } else {
       setSuccessMessage('Added to wish list!');
     }
+
+    router.refresh();
   }
 
   async function handleSubmit() {

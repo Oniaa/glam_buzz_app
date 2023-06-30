@@ -42,7 +42,7 @@ export default async function ProductPage(props: Props) {
   const ratings = allreviews.map((review) => review.rating);
 
   const sum = ratings.reduce((total, rating) => total + rating, 0);
-  const averageRating = sum / ratings.length;
+  const averageRating = Math.round((sum / ratings.length) * 10) / 10;
 
   const sessionTokenCookie = cookies().get('sessionToken');
 

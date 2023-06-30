@@ -26,3 +26,15 @@
   background-color: #d9d9d9;
   border-radius: 16px;
 }
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 56px;
+  width: 320px;
+  padding: 24px 0 24px 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}

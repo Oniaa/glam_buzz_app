@@ -20,7 +20,7 @@ export default async function ProductsPage() {
   // const brand = await getBrandByProductId();
   const products = await getProductsWithBrandNames();
   // console.log(products);
-  const reviews = await getReviews();
+  const reviews: any = await getReviews();
   console.log('reviews', reviews);
 
   return (
@@ -36,12 +36,15 @@ export default async function ProductsPage() {
       <section>
         {products.map((product) => {
           const productReview = reviews.filter(
-            (review) => review.productId === product.id,
+            (review: any) => review.productId === product.id,
           );
 
-          const ratings = productReview.map((review) => review.rating);
+          const ratings = productReview.map((review: any) => review.rating);
           console.log('ratings', ratings);
-          const sum = ratings.reduce((total, rating) => total + rating, 0);
+          const sum = ratings.reduce(
+            (total: any, rating: any) => total + rating,
+            0,
+          );
           const averageRating = sum / ratings.length;
           console.log('average rating', averageRating);
           return (

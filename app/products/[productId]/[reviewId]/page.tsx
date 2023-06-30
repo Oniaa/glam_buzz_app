@@ -61,10 +61,6 @@ export default async function ReviewPage(props: Props) {
           </h4>
         </div>
       </section>
-      <div className={style.rating}>
-        <span className={quicksand.className}>Rate this product</span>
-        <span>RATING STARS</span>
-      </div>
       <ReviewForm userId={user?.id} productId={product.id} />
       <br />
     </main>

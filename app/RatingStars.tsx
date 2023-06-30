@@ -1,3 +1,5 @@
+import style from './RatingStars.module.scss';
+
 type Props = {
   rating: number;
 };
@@ -20,5 +22,5 @@ export default function StarRating({ rating }: Props) {
     stars.push(<span key={`star-empty-${i}`}>☆</span>);
   }
 
-  return <div>{stars}</div>;
+  return <div className={style.star}>{stars}</div>;
 }

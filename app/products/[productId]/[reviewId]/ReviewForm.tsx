@@ -33,6 +33,8 @@ export default function ReviewForm({ userId, productId }: Props) {
       setError(data.error);
       return;
     }
+
+    router.refresh();
   }
 
   const handleRating = (selectedRating: number) => {
@@ -57,7 +59,7 @@ export default function ReviewForm({ userId, productId }: Props) {
       className={style.formContainer}
       onSubmit={(event) => event.preventDefault()}
     >
-      <div>
+      <div className={style.rating}>
         <span className={quicksand.className}>Rate this product:</span>
         <div>
           {[1, 2, 3, 4, 5].map((value) => (

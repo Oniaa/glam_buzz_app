@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { getReviewsByUser } from '../../../../database/reviews';
-import { quicksand } from '../../../../util/fonts';
+import { quicksand, raleway } from '../../../../util/fonts';
 import StarRating from '../../../RatingStars';
 import style from './page.module.scss';
 
@@ -17,9 +17,13 @@ export default async function UserReviewedPage({ params }: Props) {
       <section className={style.sectionContainer}>
         {reviews.map((review) => {
           return (
-            <div key={`product-div-${review.id}`}>
-              <div>
+            <div
+              className={style.contentBorder}
+              key={`product-div-${review.id}`}
+            >
+              <div className={style.productContainer}>
                 <Image
+                  className={style.imageContainer}
                   src={review.imagePath}
                   alt="Beauty Product"
                   width={100}
@@ -32,10 +36,20 @@ export default async function UserReviewedPage({ params }: Props) {
                     {review.type}
                     <span>{review.price}€</span>
                   </h4>
+
+                  <span className={quicksand.className}>
+                    Rated this product:
+                  </span>
                   <StarRating rating={review.rating} />
                 </div>
               </div>
-              <p>{review.comment}</p>
+              <hr className={style.line} />
+              <p className={`${raleway.className} ${style.review}`}>
+                Review:
+                <br />
+                <br />
+                {review.comment}
+              </p>
             </div>
           );
         })}
