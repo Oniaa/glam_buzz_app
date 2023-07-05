@@ -1,8 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Favorite } from '../../../../database/favorites';
+import { useState } from 'react';
 import { FavoriteResponseBodyDelete } from '../../../api/favorites/route';
 
 type Props = {

@@ -64,6 +64,7 @@ export default function ReviewForm({ userId, productId }: Props) {
         <div>
           {[1, 2, 3, 4, 5].map((value) => (
             <span
+              className={style.span}
               key={`rating-${value}`}
               onClick={() => handleRating(value)}
               onKeyDown={(event) => handleRatingKeyDown(event, value)}

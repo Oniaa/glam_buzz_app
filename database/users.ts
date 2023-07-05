@@ -10,8 +10,8 @@ export type UserWithPasswordHash = {
 type CreateUser = {
   id: number;
   username: string;
-  bio: string | null;
-  imageId: number | null;
+  bio?: string;
+  imageId?: number;
 };
 
 export type User = {

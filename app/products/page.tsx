@@ -7,6 +7,7 @@ import StarRating from '../RatingStars';
 // import { getBrandByProductId } from '../../database/brands';
 // import { getProducts } from '../../database/products';
 import style from './page.module.scss';
+import SearchBar from './SearBarch';
 
 export const metadata = {
   title: 'Discover Page',
@@ -23,16 +24,26 @@ export default async function ProductsPage() {
   const reviews: any = await getReviews();
   console.log('reviews', reviews);
 
+  /*   const handleSearch = (searchProduct: string) => {
+    const filtered = products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchProduct.toLowerCase()) ||
+        product.brandName.toLowerCase().includes(searchProduct.toLowerCase()),
+    );
+    // Use the filtered products as needed
+    console.log(filtered);
+  }; */
+
   return (
     <main className={style.mainContainer}>
       <h1 className={quicksand.className}>Discover</h1>
-      <div className={`${quicksand.className} ${style.searchBar}`}>Search</div>
+      {/*   <div className={`${quicksand.className} ${style.searchBar}`}>Search</div>
       <div className={style.tagContainer}>
         <span className={`${poppins.className} ${style.tag}`}>Face</span>
         <span className={`${poppins.className} ${style.tag}`}>Body</span>
         <span className={`${poppins.className} ${style.tag3}`}>Make up</span>
         <span className={`${poppins.className} ${style.tag}`}>Hair</span>
-      </div>
+      </div> */}
       <section>
         {products.map((product) => {
           const productReview = reviews.filter(
