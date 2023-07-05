@@ -12,6 +12,7 @@ import { LogoutButton } from './LogoutButton';
 export const metadata = {
   title: 'Glam Buzz',
   description: 'Get all the reviews of you favorite products',
+  manifest: '/manifest.json',
 };
 
 type Props = {

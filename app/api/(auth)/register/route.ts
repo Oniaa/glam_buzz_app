@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { createSession } from '../../../../database/sessions';
 import {
   createUser,
+  CreateUser,
   getUserByUsername,
   User,
 } from '../../../../database/users';
@@ -17,7 +18,7 @@ type Error = {
 
 export type RegisterResponseBodyPost =
   | {
-      user: User;
+      user: CreateUser;
     }
   | Error;
 

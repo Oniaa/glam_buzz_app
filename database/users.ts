@@ -7,7 +7,7 @@ export type UserWithPasswordHash = {
   passwordHash: string;
 };
 
-type CreateUser = {
+export type CreateUser = {
   id: number;
   username: string;
   bio?: string;

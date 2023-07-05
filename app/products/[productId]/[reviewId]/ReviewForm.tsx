@@ -85,9 +85,9 @@ export default function ReviewForm({ userId, productId }: Props) {
           onChange={(event) => setCommentInput(event.currentTarget.value)}
         />
       </label>
-      <button className={`${poppins.className} ${style.button}`}>
+      {/* <button className={`${poppins.className} ${style.button}`}>
         Upload Picture
-      </button>
+      </button> */}
       <button
         className={`${poppins.className} ${style.button}`}
         onClick={handleReviewSubmit}
