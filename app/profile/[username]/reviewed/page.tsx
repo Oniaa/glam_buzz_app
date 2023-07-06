@@ -1,7 +1,10 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getReviewsByUser } from '../../../../database/reviews';
+import { getUserBySessionToken } from '../../../../database/users';
 import { quicksand, raleway } from '../../../../util/fonts';
 import StarRating from '../../../RatingStars';
+import DeleteReview from './DeleteButton';
 import style from './page.module.scss';
 
 type Props = {
@@ -11,6 +14,15 @@ type Props = {
 export default async function UserReviewedPage({ params }: Props) {
   const reviews = await getReviewsByUser(params.username);
   // console.log('reviews by user', reviews);
+  const cookieStore = cookies();
+  const sessionToken = cookieStore.get('sessionToken');
+
+  const user = !sessionToken?.value
+    ? undefined
+    : await getUserBySessionToken(sessionToken.value);
+
+  const canDelete = user?.username === params.username;
+
   return (
     <main className={style.mainContainer}>
       <h1 className={quicksand.className}>Reviewed products</h1>
@@ -40,10 +52,12 @@ export default async function UserReviewedPage({ params }: Props) {
                   <span className={quicksand.className}>
                     Rated this product:
                   </span>
-                  <StarRating rating={review.rating} />
+                  <div className={style.starAndDelete}>
+                    <StarRating rating={review.rating} />
+                    {canDelete && <DeleteReview reviewId={review.id} />}
+                  </div>
                 </div>
               </div>
-              <hr className={style.line} />
               <p className={`${raleway.className} ${style.review}`}>
                 Review:
                 <br />

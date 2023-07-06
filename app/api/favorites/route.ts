@@ -3,7 +3,6 @@ import { z } from 'zod';
 import {
   deleteFavoriteById,
   Favorite,
-  FavoriteDelete,
   findFavorite,
   getFavorites,
   pushToFavorite,
@@ -35,10 +34,6 @@ const favoriteSchema = z.object({
   userId: z.number(),
   productId: z.number(),
 });
-
-/* const deleteSchema = z.object({
-  favoriteId: z.number(),
-}); */
 
 export async function POST(
   request: NextRequest,

@@ -1,12 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { ReviewSubmit, submitReview } from '../../../database/reviews';
+import {
+  deleteReviewById,
+  ReviewSubmit,
+  submitReview,
+} from '../../../database/reviews';
 
 type Error = {
   error: string;
 };
 
 export type ReviewResponseBodyPost =
+  | {
+      review: ReviewSubmit;
+    }
+  | Error;
+
+export type ReviewResponseBodyDelete =
   | {
       review: ReviewSubmit;
     }
@@ -64,9 +74,38 @@ export async function POST(
   });
 }
 
-// return NextResponse.json(review);
+export async function DELETE(
+  request: NextRequest,
+): Promise<NextResponse<ReviewResponseBodyDelete>> {
+  const url = new URL(request.url);
+  console.log('hello url', url);
 
-/*  return NextResponse.json({
-  review: review,
-});
- */
+  const reviewId = url.searchParams.get('reviewId');
+  console.log('reviewId:', reviewId);
+
+  if (!reviewId) {
+    return NextResponse.json(
+      {
+        error: 'Review id is not valid',
+      },
+      { status: 400 },
+    );
+  }
+
+  const deleteReview = await deleteReviewById(Number(reviewId));
+  // query the database to get all the animals
+  console.log('delete review', deleteReview);
+
+  if (!deleteReview) {
+    return NextResponse.json(
+      {
+        error: 'Review Not Found',
+      },
+      { status: 404 },
+    );
+  }
+
+  return NextResponse.json({
+    review: deleteReview,
+  });
+}
