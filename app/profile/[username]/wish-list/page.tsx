@@ -1,6 +1,8 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { getFavoritesByUser } from '../../../../database/favorites';
 import { getReviews } from '../../../../database/reviews';
+import { getUserBySessionToken } from '../../../../database/users';
 import { quicksand } from '../../../../util/fonts';
 import StarRating from '../../../RatingStars';
 import DeleteFavorite from './DeleteButton';
@@ -13,10 +15,19 @@ type Props = {
 };
 
 export default async function UserWishListPage({ params }: Props) {
+  const cookieStore = cookies();
+  const sessionToken = cookieStore.get('sessionToken');
+
+  const user = !sessionToken?.value
+    ? undefined
+    : await getUserBySessionToken(sessionToken.value);
+
   const favorites = await getFavoritesByUser(params.username);
   // console.log('favorites by user', favorites);
 
   const reviews = await getReviews();
+
+  const canDelete = user?.username === params.username;
 
   return (
     <main className={style.mainContainer}>
@@ -52,7 +63,7 @@ export default async function UserWishListPage({ params }: Props) {
                 </h4>
                 <div className={style.starAndDelete}>
                   <StarRating rating={averageRating} />
-                  <DeleteFavorite favoriteId={favorite.id} />
+                  {canDelete && <DeleteFavorite favoriteId={favorite.id} />}
                 </div>
               </div>
             </div>
