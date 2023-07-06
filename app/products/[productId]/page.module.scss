@@ -25,11 +25,15 @@
   }
 }
 
+.img {
+  margin: auto;
+}
+
 .ratingAndPrice {
   display: flex;
   justify-content: center;
   margin-top: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
   width: 100%;
   gap: 32px;
   align-items: baseline;
@@ -38,6 +42,18 @@
     font-size: 1.125rem;
     font-weight: 500;
   }
+}
+
+.reviewAndRating {
+  margin: auto;
+  margin-bottom: 8px;
+}
+
+.line {
+  margin: auto;
+  margin-bottom: 24px;
+  width: 80%;
+  border-top: 1px solid #000;
 }
 
 .reviewBnt {
@@ -75,10 +91,41 @@
 }
 
 .productText {
-  margin: 0 40px 0 40px;
+  border-top: #000 solid 1px;
+  border-bottom: #000 solid 1px;
+  padding: 16px 40px 16px 40px;
+  margin-bottom: 16px;
 
   span {
     font-size: 1.125rem;
     font-weight: 600;
   }
 }
+
+.title {
+  margin: 0 40px 8px 40px;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.reviews {
+  padding: 16px 40px 16px 40px;
+  border-bottom: #000 solid 0.7px;
+
+  .nameAndStar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+
+    span {
+      font-weight: 600;
+    }
+  }
+}
+/* .line2 {
+  margin: auto;
+  margin-bottom: 16px;
+  width: 100%;
+  border-top: 1px solid #000;
+} */

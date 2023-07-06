@@ -2,12 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getProductsWithBrandNames } from '../../database/products';
 import { getReviews } from '../../database/reviews';
-import { poppins, quicksand } from '../../util/fonts';
+import { quicksand } from '../../util/fonts';
 import StarRating from '../RatingStars';
 // import { getBrandByProductId } from '../../database/brands';
 // import { getProducts } from '../../database/products';
 import style from './page.module.scss';
-import SearchBar from './SearBarch';
+
+// import SearchBar from './SearBarch';
 
 export const metadata = {
   title: 'Discover Page',
@@ -58,6 +59,7 @@ export default async function ProductsPage() {
           );
           const averageRating = sum / ratings.length;
           console.log('average rating', averageRating);
+
           return (
             <div
               className={style.productContainer}

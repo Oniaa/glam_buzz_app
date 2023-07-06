@@ -14,7 +14,7 @@ export default async function UserReviewedPage({ params }: Props) {
   return (
     <main className={style.mainContainer}>
       <h1 className={quicksand.className}>Reviewed products</h1>
-      <section className={style.sectionContainer}>
+      <section>
         {reviews.map((review) => {
           return (
             <div

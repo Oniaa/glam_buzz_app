@@ -38,11 +38,16 @@ export default async function ProductPage(props: Props) {
   const allreviews = await getReviewsByProductId(
     Number(props.params.productId),
   );
+  const reviewCount = allreviews.length;
 
   const ratings = allreviews.map((review) => review.rating);
+  const ratingCount = ratings.length;
 
   const sum = ratings.reduce((total, rating) => total + rating, 0);
   const averageRating = Math.round((sum / ratings.length) * 10) / 10;
+
+  // console.log('Review Count:', reviewCount);
+  // console.log('Rating Count:', ratingCount);
 
   const sessionTokenCookie = cookies().get('sessionToken');
 
@@ -50,7 +55,7 @@ export default async function ProductPage(props: Props) {
   const user =
     sessionTokenCookie &&
     (await getUserBySessionToken(sessionTokenCookie.value));
-  console.log('user', user);
+  // console.log('user', user);
 
   return (
     <main className={style.mainContainer}>
@@ -60,6 +65,7 @@ export default async function ProductPage(props: Props) {
         <h4 className={quicksand.className}>{product.type}</h4>
       </div>
       <Image
+        className={style.img}
         src={product.imagePath}
         alt="Beauty Product"
         width={300}
@@ -68,12 +74,22 @@ export default async function ProductPage(props: Props) {
 
       <div className={style.ratingAndPrice}>
         <StarRating rating={averageRating} />
-        {isNaN(averageRating) ? null : <span>{averageRating}</span>}
+        {isNaN(averageRating) ? null : (
+          <span className={quicksand.className}>{averageRating}</span>
+        )}
         <span className={`${quicksand.className} ${style.price}`}>
           {product.price}€
         </span>
       </div>
-
+      <div className={style.reviewAndRating}>
+        {isNaN(reviewCount) ? null : (
+          <span className={quicksand.className}>{reviewCount} reviews</span>
+        )}{' '}
+        {isNaN(ratingCount) ? null : (
+          <span className={quicksand.className}>{ratingCount} ratings</span>
+        )}
+      </div>
+      <hr className={style.line} />
       <Link
         className={`${poppins.className} ${style.reviewBnt}`}
         href={`/products/${product.id}/reviews` as any}
@@ -83,24 +99,28 @@ export default async function ProductPage(props: Props) {
 
       <WishListButton userId={user?.id} productId={product.id} />
 
-      <section className={style.productText}>
-        <span className={quicksand.className}>Product Details</span>
-        <br />
-        <p className={raleway.className}>{product.description}</p>
-        <br />
-        <span className={quicksand.className}>Application</span>
-        <br />
-        <p className={raleway.className}>{product.application}</p>
-        <br />
-        <span className={quicksand.className}>Community Reviews</span>
+      <section>
+        <div className={style.productText}>
+          <span className={quicksand.className}>Product Details</span>
+          <br />
+          <p className={raleway.className}>{product.description}</p>
+          <br />
+          <span className={quicksand.className}>Application</span>
+          <br />
+          <p className={raleway.className}>{product.application}</p>
+        </div>
+        <span className={`${quicksand.className} ${style.title}`}>
+          Community Reviews
+        </span>
         <div>
           {reviews.map((review) => {
             return (
-              <div key={`review-div-${review.id}`}>
-                <span>{review.username}</span>
-                <br />
-                <StarRating rating={review.rating} />
-                <p>{review.comment}</p>
+              <div className={style.reviews} key={`review-div-${review.id}`}>
+                <div className={style.nameAndStar}>
+                  <span className={quicksand.className}>{review.username}</span>
+                  <StarRating rating={review.rating} />
+                </div>
+                <p className={raleway.className}>{review.comment}</p>
               </div>
             );
           })}

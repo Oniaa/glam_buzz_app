@@ -21,9 +21,8 @@ export default async function UserWishListPage({ params }: Props) {
   return (
     <main className={style.mainContainer}>
       <h1 className={quicksand.className}>Wish List</h1>
-      <section className={style.sectionContainer}>
+      <section>
         {favorites.map((favorite) => {
-          console.log('favorite map id', favorite.id);
           const productReview = reviews.filter(
             (review) => review.productId === favorite.productId,
           );
@@ -33,24 +32,28 @@ export default async function UserWishListPage({ params }: Props) {
           const averageRating = sum / ratings.length;
 
           return (
-            <div key={`product-div-${favorite.id}`}>
-              <div>
-                <Image
-                  src={favorite.imagePath}
-                  alt="Beauty Product"
-                  width={100}
-                  height={100}
-                />
-                <div className={style.productTitle}>
-                  <h3 className={quicksand.className}>{favorite.brandName}</h3>
-                  <h2 className={quicksand.className}>{favorite.name}</h2>
-                  <h4 className={quicksand.className}>
-                    {favorite.type}
-                    <span>{favorite.price}€</span>
-                  </h4>
+            <div
+              className={style.productContainer}
+              key={`product-div-${favorite.id}`}
+            >
+              <Image
+                className={style.imageContainer}
+                src={favorite.imagePath}
+                alt="Beauty Product"
+                width={100}
+                height={100}
+              />
+              <div className={style.productTitle}>
+                <h3 className={quicksand.className}>{favorite.brandName}</h3>
+                <h2 className={quicksand.className}>{favorite.name}</h2>
+                <h4 className={quicksand.className}>
+                  {favorite.type}
+                  <span>{favorite.price}€</span>
+                </h4>
+                <div className={style.starAndDelete}>
                   <StarRating rating={averageRating} />
+                  <DeleteFavorite favoriteId={favorite.id} />
                 </div>
-                <DeleteFavorite favoriteId={favorite.id} />
               </div>
             </div>
           );
