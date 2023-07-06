@@ -13,7 +13,8 @@ export function LogoutButton() {
         className={style.button}
         formAction={async () => {
           await logout();
-          router.push('./' as any);
+          router.push('/' as any);
+          router.refresh();
         }}
       >
         <TbLogout size="1.65rem" />

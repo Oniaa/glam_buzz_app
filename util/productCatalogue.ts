@@ -35,8 +35,7 @@ export const products = [
       'Buff onto prepped skin with a sponge or Foundation Brush for a seamless finish starting at the center of the face and blending outward.',
     tagId: 4,
     brandId: 2,
-    imagePath:
-      '/images/productPics/skin-long-wear-weightless-foundation-spf-15.avif',
+    imagePath: '/images/productPics/skin-long-wear-weightless-foundation.avif',
     price: 58,
   },
   {
