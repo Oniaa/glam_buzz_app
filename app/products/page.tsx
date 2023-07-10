@@ -13,6 +13,7 @@ import style from './page.module.scss';
 export const metadata = {
   title: 'Discover Page',
   description: 'Find the best beauty products',
+  shortcut: '/favicon.ico',
 };
 
 export const dynamic = 'force-dynamic';

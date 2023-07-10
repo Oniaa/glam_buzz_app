@@ -51,7 +51,7 @@ export async function POST(
     // console.log(result.error);
     return NextResponse.json(
       {
-        error: 'The data is incomplete',
+        error: 'Please login',
       },
       { status: 400 },
     );

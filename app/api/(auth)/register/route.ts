@@ -8,7 +8,6 @@ import {
   createUser,
   CreateUser,
   getUserByUsername,
-  User,
 } from '../../../../database/users';
 import { secureCookieOptions } from '../../../../util/cookies';
 
