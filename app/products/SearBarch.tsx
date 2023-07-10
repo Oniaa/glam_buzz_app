@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-type Props = {
+/* type Props = {
   products: [];
-};
+}; */
 
 export default function SearchBar({ products }: any) {
   const [selectedType, setSelectedType] = useState('');

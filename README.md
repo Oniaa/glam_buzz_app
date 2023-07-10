@@ -33,10 +33,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## DrawSql
+## Prep
 
-(https://drawsql.app/teams/glam-buzz/diagrams/glam-buzz-app)
+[DrawSql](https://drawsql.app/teams/glam-buzz/diagrams/glam-buzz-app)
 
-## Figma
-
-(https://www.figma.com/file/cV249y1fSqCrTNOo7DjnRg/Glam-Buzz?type=design&node-id=2%3A327&mode=design&t=2WY42D4BFgARyXgb-1)
+[Figma](https://www.figma.com/file/cV249y1fSqCrTNOo7DjnRg/Glam-Buzz?type=design&node-id=2%3A327&mode=design&t=2WY42D4BFgARyXgb-1)

@@ -1,9 +1,10 @@
 'use client';
-import axios from 'axios';
-import cloudinary from 'cloudinary';
-import { useRouter } from 'next/navigation';
+// import axios from 'axios';
+// import cloudinary from 'cloudinary';
+// import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { ImageResponseBodyPost } from '../../../api/images/route';
+
+// import { ImageResponseBodyPost } from '../../../api/images/route';
 
 export default function EditProfileForm() {
   /* const [profilePicture, setProfilePicture] = useState('');
