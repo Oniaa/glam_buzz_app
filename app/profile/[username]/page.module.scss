@@ -4,7 +4,7 @@
   align-items: center;
 
   img {
-    margin-top: 128px;
+    margin-top: 56px;
     border-radius: 50%;
   }
 
@@ -76,5 +76,21 @@
   span {
     font-size: 1.125rem;
     font-weight: 500;
+  }
+}
+
+@media (min-width: 768px) {
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 60%;
+    margin-bottom: 72px;
+
+    img {
+      margin-top: 56px;
+      border-radius: 50%;
+    }
   }
 }
