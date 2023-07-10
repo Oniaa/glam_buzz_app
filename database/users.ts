@@ -10,8 +10,7 @@ export type UserWithPasswordHash = {
 export type CreateUser = {
   id: number;
   username: string;
-  bio?: string;
-  imageId?: number;
+  bio: string;
 };
 
 export type User = {
@@ -33,10 +32,11 @@ export const getUserWithPasswordHashByUsername = cache(
 );
 
 export const getUserByUsername = cache(async (username: string) => {
-  const [user] = await sql<User[]>`
+  const [user] = await sql<CreateUser[]>`
     SELECT
       id,
-      username
+      username,
+      bio
     FROM
       users
     WHERE
@@ -47,24 +47,16 @@ export const getUserByUsername = cache(async (username: string) => {
 });
 
 export const createUser = cache(
-  async (
-    username: string,
-    passwordHash: string,
-    bio?: string,
-    imageId?: number,
-  ) => {
+  async (username: string, passwordHash: string, bio: string) => {
     const [user] = await sql<CreateUser[]>`
     INSERT INTO users
-      (username, password_hash, bio, image_id)
+      (username, password_hash, bio)
     VALUES
-      (${username.toLowerCase()}, ${passwordHash}, ${bio || null}, ${
-      imageId || null
-    })
+      (${username.toLowerCase()}, ${passwordHash}, ${bio})
     RETURNING
     id,
     username,
-    bio,
-    image_id
+    bio
  `;
 
     return user;

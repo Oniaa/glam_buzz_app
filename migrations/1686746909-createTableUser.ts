@@ -6,8 +6,7 @@ export async function up(sql: Sql) {
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       username varchar(80) NOT NULL,
       password_hash varchar(80) NOT NULL,
-      bio varchar(500),
-      image_id integer REFERENCES images (id)
+      bio varchar(500) NOT NULL
     )
   `;
 }

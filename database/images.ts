@@ -1,4 +1,4 @@
-import { cache } from 'react';
+/* import { cache } from 'react';
 import { sql } from './connect';
 
 export type Image = {
@@ -19,3 +19,4 @@ export const uploadImage = cache(async (url: string) => {
 
   return image;
 });
+ */

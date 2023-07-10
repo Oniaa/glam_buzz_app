@@ -8,6 +8,7 @@ import style from './RegisterForm.module.scss';
 
 export default function RegisterForm() {
   const [username, setUsername] = useState('');
+  const [bio, setBio] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function RegisterForm() {
   async function register() {
     const response = await fetch('/api/register', {
       method: 'POST',
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, bio }),
     });
 
     const data: RegisterResponseBodyPost = await response.json();
@@ -43,6 +44,13 @@ export default function RegisterForm() {
           value={username}
           onChange={(event) => setUsername(event.currentTarget.value)}
           placeholder="Enter Name"
+          className={poppins.className}
+          style={{ marginBottom: '32px' }}
+        />
+        <input
+          value={bio}
+          onChange={(event) => setBio(event.currentTarget.value)}
+          placeholder="Enter Bio"
           className={poppins.className}
           style={{ marginBottom: '32px' }}
         />

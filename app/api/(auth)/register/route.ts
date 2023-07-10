@@ -24,8 +24,7 @@ export type RegisterResponseBodyPost =
 const userSchema = z.object({
   username: z.string().min(1),
   password: z.string().min(1),
-  bio: z.string().optional(),
-  imageId: z.number().optional(),
+  bio: z.string().min(1),
 });
 
 export async function POST(
@@ -63,7 +62,6 @@ export async function POST(
     result.data.username,
     passwordHash,
     result.data.bio,
-    result.data.imageId,
   );
 
   // console.log('new User', newUser);
