@@ -15,7 +15,7 @@ export default function Home() {
       <Image
         priority
         unoptimized={true}
-        src="public/images/abstract-face-one-line-art.avif"
+        src={'/images/abstract-face-one-line-art.avif'}
         width={300}
         height={204}
         alt="One line art Face"
