@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+/* import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Image, uploadImage } from '../../../database/images';
 
@@ -55,3 +55,4 @@ export async function POST(
     image: image,
   });
 }
+ */
