@@ -28,7 +28,7 @@ export default function Home() {
         <br />
         Join our vibrant community and dive into a world of beauty exploration.
       </p>
-      <Link href="/login" className={`${poppins.className} ${style.link}`}>
+      <Link href="/register" className={`${poppins.className} ${style.link}`}>
         Join
       </Link>
       <DiscoverButton />
