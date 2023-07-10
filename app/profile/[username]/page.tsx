@@ -19,7 +19,7 @@ export default async function ProfileUsernamePage({ params }: Props) {
   return (
     <main className={style.mainContainer}>
       <Image
-        priority
+        priority={true}
         unoptimized={true}
         src={`/images/profilePics/${user.username}.avif`}
         width={150}

@@ -67,7 +67,7 @@ export default async function ProductsPage() {
               key={`product-div-${product.id}`}
             >
               <Image
-                priority
+                priority={true}
                 unoptimized={true}
                 className={style.imageContainer}
                 src={product.imagePath}

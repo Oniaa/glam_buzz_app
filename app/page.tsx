@@ -13,6 +13,7 @@ export default function Home() {
   return (
     <main className={style.main}>
       <Image
+        priority={true}
         unoptimized={true}
         src="/images/abstract-face-one-line-art.avif"
         width={300}
