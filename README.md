@@ -32,3 +32,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## DrawSql
+
+(https://drawsql.app/teams/glam-buzz/diagrams/glam-buzz-app)
+
+## Figma
+
+(https://www.figma.com/file/cV249y1fSqCrTNOo7DjnRg/Glam-Buzz?type=design&node-id=2%3A327&mode=design&t=2WY42D4BFgARyXgb-1)
