@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
   margin: auto;
   margin-bottom: 32px;
   color: #000;
   width: 152px;
   height: 32px;
   font-size: 1.125rem;
-  background-color: #d9d9d9;
+  background-color: transparent;
   border-radius: 16px;
+  border: 1px solid #000;
 }

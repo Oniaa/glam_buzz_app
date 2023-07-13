@@ -39,12 +39,12 @@ export default async function ProfileUsernamePage({ params }: Props) {
           Share Profile
         </button>
       </div>
-      <div className={style.divContainer}>
+      <div className={style.divContainer1}>
         <Link href={`/profile/${user.username}/reviewed` as any}>
           <span className={poppins.className}>Reviewed Products</span>
         </Link>
       </div>
-      <div className={style.divContainer}>
+      <div className={style.divContainer2}>
         <Link href={`/profile/${user.username}/wish-list` as any}>
           <span className={poppins.className}>Wish List</span>
         </Link>
