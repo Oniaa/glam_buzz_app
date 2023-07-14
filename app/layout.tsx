@@ -37,7 +37,7 @@ export default async function RootLayout({ children }: Props) {
               <GrHomeRounded size="1.65rem" />
             </Link>
           </div>
-          <div>
+          <div className={style.discover}>
             <Link href="/products">
               <RiCompassDiscoverLine size="2rem" />
             </Link>
